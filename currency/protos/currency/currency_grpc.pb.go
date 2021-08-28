@@ -5,8 +5,8 @@ package currency
 import (
 	context "context"
 	grpc "google.golang.org/grpc"
-	//codes "google.golang.org/grpc/codes"
-	//status "google.golang.org/grpc/status"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -47,20 +47,20 @@ type CurrencyServer interface {
 }
 
 // UnimplementedCurrencyServer must be embedded to have forward compatible implementations.
-//type UnimplementedCurrencyServer struct {
-//}
-//
-//func (UnimplementedCurrencyServer) GetRate(context.Context, *RateRequest) (*RateResponse, error) {
-//	return nil, status.Errorf(codes.Unimplemented, "method GetRate not implemented")
-//}
-//func (UnimplementedCurrencyServer) mustEmbedUnimplementedCurrencyServer() {}
+type UnimplementedCurrencyServer struct {
+}
+
+func (UnimplementedCurrencyServer) GetRate(context.Context, *RateRequest) (*RateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRate not implemented")
+}
+func (UnimplementedCurrencyServer) mustEmbedUnimplementedCurrencyServer() {}
 
 // UnsafeCurrencyServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to CurrencyServer will
 // result in compilation errors.
-//type UnsafeCurrencyServer interface {
-//	mustEmbedUnimplementedCurrencyServer()
-//}
+type UnsafeCurrencyServer interface {
+	mustEmbedUnimplementedCurrencyServer()
+}
 
 func RegisterCurrencyServer(s grpc.ServiceRegistrar, srv CurrencyServer) {
 	s.RegisterService(&Currency_ServiceDesc, srv)
